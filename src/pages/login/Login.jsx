@@ -7,6 +7,11 @@ function Login() {
   return (
     <div className="login">
       <div className="a-right col-md-6">
+        <Link to="/" className="Link">
+          <button class="btn btn-warning back-btn">
+            <i className="fa fa-arrow-left"></i> back
+          </button>
+        </Link>
         <h1 className="text-center login-title">LOGIN</h1>
         <span className="sub-text">login with your mobile and password</span>
         <form className="login-form">
@@ -30,9 +35,9 @@ function Login() {
         </Link>
       </div>
 
-      <div className="a-left col-md-6">
+      {/* <div className="a-left col-md-6">
         <img src={leftImage} className="a-left-image" alt="" />
-      </div>
+      </div> */}
     </div>
   );
 }

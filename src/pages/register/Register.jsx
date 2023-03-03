@@ -147,11 +147,15 @@ function Register() {
       <div className="login row">
         {hide === 1 ? (
           <>
-            <div className="a-right col-md-6">
+            <div className="a-right col-md-6 text-center">
+              <Link to="/" className="Link">
+                <button class="btn btn-warning back-btn">
+                  <i className="fa fa-arrow-left"></i> back
+                </button>
+              </Link>
               <h1 className="text-center login-title">Registration</h1>
               <span className="sub-text" style={{ marginBottom: 10 }}>
-                Please Enter your Cooperative Bank account number for
-                verification
+                Please Enter your Coop Bank account number for verification
               </span>
 
               {message !== "" && (
@@ -348,9 +352,9 @@ function Register() {
             404 ! The page you are looking for is not found
           </div>
         )}
-        <div className="a-left col-md-6">
+        {/* <div className="a-left col-md-6">
           <img src={leftImage} className="a-left-image" alt="" />
-        </div>
+        </div> */}
       </div>
     </div>
   );
