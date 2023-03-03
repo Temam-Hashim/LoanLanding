@@ -40,5 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5010/api/v1/"
+  "proxy": "http:/10.100.150.36:5010/api/v1/"
 }
