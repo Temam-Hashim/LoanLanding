@@ -105,7 +105,7 @@ function Register() {
     } else {
       // add data to db
 
-      const url = "http://localhost:5010/api/v1/customers";
+      const url = "/customers/";
       const data = {
         full_name: userData.name,
         email: userData.email,
@@ -134,9 +134,13 @@ function Register() {
             "Operation Failed ! User With Same Credential Exist in our System"
           );
           setLoginMessage(true);
+          setPass("");
+          setPassConfirm("");
         } else if (error.message === "Request failed with status code 500") {
           setMessage("Operation Failed ! Server Error Please try again later");
           setLoginMessage(true);
+          setPass("");
+          setPassConfirm("");
         }
       }
     }
@@ -149,7 +153,7 @@ function Register() {
           <>
             <div className="a-right col-md-6 text-center">
               <Link to="/" className="Link">
-                <button class="btn btn-warning back-btn">
+                <button class="btn  back-btn">
                   <i className="fa fa-arrow-left"></i> back
                 </button>
               </Link>
@@ -202,6 +206,11 @@ function Register() {
         ) : hide === 2 ? (
           <>
             <div className="a-right col-md-6">
+              <Link to="/" className="Link">
+                <button class="btn back-btn">
+                  <i className="fa fa-arrow-left"></i> Back Home
+                </button>
+              </Link>
               <div className="confirm-section">
                 <h1 className="text-center login-title">
                   Account Confirmation
@@ -211,7 +220,7 @@ function Register() {
                 </h6>
 
                 <div className="detail-list">
-                  <div>Name</div>
+                  <span>Name</span>
                   <div className="value">
                     <input
                       type="text"
@@ -222,7 +231,7 @@ function Register() {
                   </div>
                 </div>
                 <div className="detail-list">
-                  <div>Mobile</div>
+                  <span>Mobile</span>
                   <div className="value">
                     <input
                       type="text"
@@ -233,7 +242,7 @@ function Register() {
                   </div>
                 </div>
                 <div className="detail-list">
-                  <div>Branch</div>
+                  <span>Branch</span>
                   <div className="value">
                     <input
                       type="text"
@@ -245,7 +254,7 @@ function Register() {
                 </div>
 
                 <div className="detail-list">
-                  <div>Address</div>
+                  <span>Address</span>
                   <div className="value">
                     <input
                       type="text"
@@ -275,6 +284,11 @@ function Register() {
         ) : hide === 3 ? (
           <>
             <div className="a-right col-md-6">
+              <Link to="/" className="Link">
+                <button class="btn  back-btn">
+                  <i className="fa fa-arrow-left"></i> Back Home
+                </button>
+              </Link>
               <h1 className="text-center login-title">Verify OTP</h1>
               <span className="sub-text">
                 Please Enter One time password sent to your mobile number
@@ -307,6 +321,11 @@ function Register() {
           </>
         ) : hide === 4 ? (
           <div className="a-right col-md-6">
+            <Link to="/" className="Link">
+              <button class="btn back-btn">
+                <i className="fa fa-arrow-left"></i> Back Home
+              </button>
+            </Link>
             <h1 className="text-center login-title">Set Password</h1>
             <span className="sub-text">
               Your Account is verified, please set your password here

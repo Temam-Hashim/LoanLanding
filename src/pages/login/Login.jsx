@@ -8,7 +8,7 @@ function Login() {
     <div className="login">
       <div className="a-right col-md-6">
         <Link to="/" className="Link">
-          <button class="btn btn-warning back-btn">
+          <button class="btn back-btn">
             <i className="fa fa-arrow-left"></i> back
           </button>
         </Link>
