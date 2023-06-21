@@ -9,7 +9,7 @@ export const About = () => {
       try {
         await axios.get("/about/").then((res) => {
           res.data.data.map((d) => setData(d));
-          setLists(data.about_lists.split(","));
+          setLists(data.about_lists?.split(","));
         });
       } catch (error) {
         console.log(error);

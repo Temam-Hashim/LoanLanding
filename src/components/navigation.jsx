@@ -43,11 +43,16 @@ export const Navigation = () => {
                 Services
               </a>
             </li>
-            {/* <li>
-              <a href="#portfolio" className="page-scroll">
-                Gallery
+            <li>
+              <a
+                href="https://coopbankoromia.com.et/"
+                className="page-scroll"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Website
               </a>
-            </li> */}
+            </li>
             <li>
               <a href="#testimonials" className="page-scroll">
                 Testimonials

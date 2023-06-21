@@ -89,7 +89,11 @@ export const Contact = () => {
                 </p>
               </div>
 
-              <form name="sentMessage" validate onSubmit={handleSubmit}>
+              <form
+                name="sentMessage"
+                validate="validate"
+                onSubmit={handleSubmit}
+              >
                 <div className="row">
                   <div className="col-md-6">
                     <div className="form-group">

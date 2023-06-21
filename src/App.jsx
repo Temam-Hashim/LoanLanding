@@ -4,6 +4,7 @@ import axios from "axios";
 
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import Test from "./components/Test";
 
 import "./App.css";
 import Home from "./pages/home/Home";
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/Test" element={<Test />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>

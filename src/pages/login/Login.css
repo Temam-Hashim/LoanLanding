@@ -34,20 +34,42 @@
   align-content: center;
   -webkit-box-shadow: 2px 4px 10px 1px #949ba31f;
   box-shadow: 2px 4px 10px 1px #8c8a8978;
-  height: 600px;
+  min-height: 600px;
+  max-height: fit-content;
   margin-top: 30px;
+  
+
 }
-.login-form {
-  width: 70%;
+@media only screen and (max-width: 799px) {
+  .login-form {
+    width: 100%;
+  }
+  .alert-message{
+    width:100%;
+    margin-top:4px;
+  }
 }
+@media only screen and (min-width: 799px) {
+  .login-form {
+    width: 75%;
+  }
+  .alert-message{
+    width:75%;
+    margin-top:4px;
+  }
+}
+
 .login-input {
   outline: none;
   border: none;
   width: 100%;
+  height: 48px;
   border-radius: 10px;
   margin: 20px 5px 10px 5px;
   padding: 10px;
   border: 1px solid #117095;
+  font-weight: 400;
+  font-size: 14px;
 }
 .login-btn {
   width: 100%;
@@ -63,6 +85,21 @@
   outline: none;
   color: white;
 }
+.login-btn-disabled {
+  width: 100%;
+  height: 5rem;
+  background-color: #4e5557;
+  /* background: linear-gradient(to right, #ffa763 0%, #fb675c 100%) !important; */
+  margin: 20px 5px 20px 5px;
+  padding: 7px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  color: white;
+  cursor:not-allowed;
+}
 
 .login-btn:hover {
   background-color: rgb(9, 52, 68);
@@ -70,17 +107,17 @@
   cursor: pointer;
 }
 .no-account {
-  color: white;
-  font-size: 14px;
+  color: rgb(116, 18, 37);
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  padding: 10px;
-  margin: 5px;
+  font-style: italic;
+  margin-left:50%;
 }
 
 .no-account:hover {
-  font-size: 16px;
-  color: blue;
+  color: rgb(255, 0, 221);
+  font-size: 13px;
 }
 .sub-text {
   color: white;
@@ -118,35 +155,33 @@
 .buttons {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  margin-right: 35px;
+  justify-content: center;
+  align-items: center;;
   align-items: center;
 }
 .cancel {
   font-size: 14px;
   padding: 10px;
-  margin: 10px;
-  width: 140px;
+  margin:4px;
+  width: 47%;
   background-color: #db1a1d;
   border-radius: 10px;
   border: none;
   outline: none;
   color: white;
   font-weight: bold;
-  font-size: 15px;
 }
 .confirm {
   font-size: 14px;
   padding: 10px;
-  margin: 10px;
   background: green;
   border-radius: 10px;
-  width: 140px;
+  margin:4px;
+  width: 47%;
   border: none;
   outline: none;
   color: white;
   font-weight: bold;
-  font-size: 15px;
 }
 .confirm:hover,
 .cancel:hover {
@@ -162,4 +197,11 @@
   width: 120px;
   border-radius: 10px;
   /* background: linear-gradient(to right, #ffa763 0%, #fb675c 100%) !important; */
+}
+.input-label{
+  color:rgb(227, 216, 216);
+  font-size:12px;
+  font-weight:bold;
+  margin-left:10px;
+  margin-bottom:-10px;
 }
