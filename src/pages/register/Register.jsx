@@ -44,15 +44,16 @@ function Register() {
         } else if (mobile.substring(0, 1) === "2") {
           mobile = mobile.substring(3, 12);
         }
-        const options = {
-          url: "http://localhost:5000/api/v1/account/mobile_no/" + mobile,
-        };
+
         try {
           setLoading(true);
-          const res = await axios.get(options.url);
-          console.log(res);
+          const res = await axios.post("http://10.1.245.150:7081/userInfo", {
+            phoneNumber: mobile,
+          });
+
+          console.log(res.data.userInfo.fullName);
           if (res) {
-            setUserData(res.data);
+            setUserData(res.data.userInfo);
             setHide(2);
             setLoading(false);
             setMessage("");
@@ -61,17 +62,13 @@ function Register() {
             setLoading(false);
           }
         } catch (error) {
-          console.log(error.response.data);
-          if (error.response.data.status === "empty") {
-            setMessage("No Account Found With This Mobile Number!");
-            setLoading(false);
-          }
+          // console.log(error.response.data);
+          setMessage("No Account Found With This Mobile Number!");
           setLoading(false);
         }
       }
     } else if (hide === 2) {
       // confirm account detail
-      console.log(branch);
       if (!branch) {
         setMessage("Please Select at least One Branch");
       } else {
@@ -111,16 +108,17 @@ function Register() {
       } else {
         //     // add data to db
         const data = {
-          full_name: userData.name,
+          full_name: userData.fullName,
           email: userData.email,
-          mobile: userData.mobile,
+          mobile: mobile,
           password: pass,
           gender: userData.gender,
-          dob: userData.dob,
+          dob: userData.dateOfBirth,
           branch: branch.split("-")[0],
           account_no: branch.split("-")[1],
-          account_status: userData.account_status,
-          account_type: userData.account_type,
+          account_title: branch.split("-")[2],
+          co_code: branch.split("-")[3],
+          languageCode: userData.languageCode,
         };
         try {
           setLoading(true);
@@ -129,13 +127,13 @@ function Register() {
           if (res) {
             const address = {
               customer_id: res.data.data.insertId,
-              city: userData?.address[0],
-              subcity: userData?.address[1],
-              state: userData?.address[2],
-              country: userData?.address[3],
-              werada: userData?.address[4],
-              kebele: userData?.address[5],
-              house_no: userData?.address[6],
+              city: userData?.address.country,
+              subcity: userData?.address.subCity,
+              state: userData?.address.state,
+              country: userData?.address.country,
+              werada: userData?.address.woreda,
+              kebele: userData?.address.kebale,
+              house_no: userData?.address.houseNumber,
             };
             console.log(address);
             const res2 = await axios.post("/address", address);
@@ -174,6 +172,7 @@ function Register() {
 
   // confirm user otp with generated value
 
+  console.log(userData.fullName);
   return (
     <div className="login">
       <div className="a-right col-md-6 col-lg-6 col-sm-12 col-xs-12">
@@ -232,7 +231,7 @@ function Register() {
                 <input
                   type="text"
                   disabled={true}
-                  value={userData?.name}
+                  value={userData?.fullName}
                   style={{ width: "100%" }}
                   className="login-input confirm-input"
                 />
@@ -251,7 +250,7 @@ function Register() {
                 <label className="input-label">Mobile Number</label>
                 <input
                   type="text"
-                  value={userData?.mobile}
+                  value={mobile}
                   disabled={true}
                   style={{ width: "100%" }}
                   className="login-input confirm-input"
@@ -263,7 +262,13 @@ function Register() {
                 <input
                   type="text"
                   disabled={true}
-                  value={userData.address}
+                  value={
+                    userData.address.city +
+                    " " +
+                    userData.address.subCity +
+                    " " +
+                    userData.address.country
+                  }
                   style={{ width: "100%" }}
                   className="login-input confirm-input"
                 />
@@ -280,24 +285,22 @@ function Register() {
                 >
                   <option value="">Select Branch</option>
 
-                  {userData.account_detail.details.map((data) => (
+                  {userData?.accounts?.map((data) => (
                     <option
-                      value={data.branch + "-" + data.account_no}
-                      key={data.account_no}
+                      value={
+                        data.branchName +
+                        "-" +
+                        data.accountNumber +
+                        "-" +
+                        data.accountTitle +
+                        "-" +
+                        data.coCode
+                      }
+                      key={data.accountNumber}
                     >
-                      {data.branch + " - " + data.account_no}
+                      {data.branchName + " - " + data.accountNumber}
                     </option>
                   ))}
-                  {/* <option value="Branch One">
-                    {userData.account_detail.details[0].branch +
-                      " - " +
-                      userData.account_detail.details[0].account_no}
-                  </option>
-                  <option value="Branch Two">
-                    {userData.account_detail.details[1].branch +
-                      " - " +
-                      userData.account_detail.details[1].account_no}
-                  </option> */}
                 </select>
               </div>
             </div>
